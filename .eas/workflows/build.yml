@@ -1,0 +1,14 @@
+name: Auto Android APK Build
+
+on:
+  push:
+    branches:
+      - main # Triggers the build automatically on every push to main
+
+jobs:
+  build_android:
+    name: Build Installable Android APK
+    type: build
+    params:
+      platform: android
+      profile: preview # Generates a downloadable .apk file for direct installation
