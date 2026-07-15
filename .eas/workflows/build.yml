@@ -1,53 +1,53 @@
-# name: Auto Android APK Build
-
-# on:
-#   push:
-#     branches:
-#       - main # Triggers the build automatically on every push to main
-# jobs:
-#   build_android:
-#     name: Build Installable Android APK
-#     type: build
-#     params:
-#       platform: android
-#       profile: preview # Generates a downloadable .apk file for direct installation
-#   build_ios:
-#     type: build
-#     params:
-#       platform: ios
-#       profile: production
-name: Build for Testing
+name: Auto Android APK Build
 
 on:
   push:
     branches:
-      - main         # Triggers when pushing/merging into main
-      - 'feature/**' # Triggers when pushing to feature branches (optional, change as needed)
-
+      - main # Triggers the build automatically on every push to main
 jobs:
-  build_test_app:
-    name: Create Installable Test App
-    runs-on: ubuntu-latest
+  build_android:
+    name: Build Installable Android APK
+    type: build
+    params:
+      platform: android
+      profile: preview # Generates a downloadable .apk file for direct installation
+  build_ios:
+    type: build
+    params:
+      platform: ios
+      profile: production
+# name: Build for Testing
 
-    steps:
-      - name: 🏗 Checkout repository
-        uses: actions/checkout@v4
+# on:
+#   push:
+#     branches:
+#       - main         # Triggers when pushing/merging into main
+#       - 'feature/**' # Triggers when pushing to feature branches (optional, change as needed)
 
-      - name: 🏗 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18 
-          cache: npm       
+# jobs:
+#   build_test_app:
+#     name: Create Installable Test App
+#     runs-on: ubuntu-latest
 
-      - name: 🏗 Setup Expo & EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_AUTO_TOKEN }} 
+#     steps:
+#       - name: 🏗 Checkout repository
+#         uses: actions/checkout@v4
 
-      - name: 📦 Install dependencies
-        run: npm ci 
+#       - name: 🏗 Setup Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 18 
+#           cache: npm       
 
-      - name: 🚀 Build Testing App on EAS
-        # We changed --profile to "preview" and removed "--auto-submit"
-        run: eas build --platform all --profile preview --non-interactive
+#       - name: 🏗 Setup Expo & EAS
+#         uses: expo/expo-github-action@v8
+#         with:
+#           eas-version: latest
+#           token: ${{ secrets.EXPO_AUTO_BUILD_TOKEN }} 
+
+#       - name: 📦 Install dependencies
+#         run: npm ci 
+
+#       - name: 🚀 Build Testing App on EAS
+#         # We changed --profile to "preview" and removed "--auto-submit"
+#         run: eas build --platform all --profile preview --non-interactive
