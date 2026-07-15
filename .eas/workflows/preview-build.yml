@@ -7,25 +7,8 @@ on:
 
 jobs:
   compile-and-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🏗️ Checkout repository
-        uses: actions/checkout@v4
-
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          # cache: npm
-
-      - name: 📦 Install dependencies
-        run: npm install
-
-      - name: 🚀 Setup Expo EAS
-        uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_AUTO_BUILD_TOKEN }} # Reads your hidden secret key
-
-      - name: ☁️ Trigger EAS Cloud Build
-        run: eas build --platform android --profile preview --non-interactive
+    name: Trigger EAS Cloud Build
+    type: build
+    params:
+      platform: android
+      profile: preview
