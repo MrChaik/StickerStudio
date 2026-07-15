@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main # Triggers the build automatically on every push to main
-
 jobs:
   build_android:
     name: Build Installable Android APK
