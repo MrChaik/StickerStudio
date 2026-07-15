@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, ImageSourcePropType } from "react-native";
 import ImageViewer from "@/components/ImageViewer";
-import * as MediaLibrary from 'expo-media-library';
+import * as MediaLibrary from 'expo-media-library/legacy';
 import Button from "@/components/Button";
 import * as ImagePicker from 'expo-image-picker';
 import { useEffect, useState, useRef } from 'react';
@@ -108,6 +108,7 @@ const styles = StyleSheet.create({
    footerContainer: {
     flex: 1 / 3,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   optionsContainer: {
     position: 'absolute',
