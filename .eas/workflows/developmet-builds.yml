@@ -11,8 +11,8 @@ jobs:
     params:
       platform: android
       profile: preview # Generates a downloadable .apk file for direct installation
-  build_ios:
-    type: build
-    params:
-      platform: ios
-      profile: production
+  # build_ios:
+  #   type: build
+  #   params:
+  #     platform: ios
+  #     profile: production
